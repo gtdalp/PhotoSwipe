@@ -4,10 +4,13 @@ var photoswipeObj = {
     createImgTpl: function (obj) {
         var html = '';
         var aHtml = function (o) {
-            return '<a href="' + o.maxImgSrc1600 + '" data-size="1600x1600" data-med="' + o.maxImgSrc1024 + '" data-med-size="1024x1024" data-author="' + o.author + '" class="demo-gallery__img--main">\
+            var maxImgSrc1 = o.maxImgSrc1 || '';
+            var maxImgSrc2 = o.maxImgSrc2 || '';
+            var html = '<a href="' + maxImgSrc1 + '" data-size="' + o.maxImgSrc1wh + '" data-med="' + o.maxImgSrc2 + '" data-med-size="' + o.maxImgSrc1wh + '" data-author="' + (o.author || '') + '" class="demo-gallery__img--main">\
               <img src="' + o.minImgSrc + '" alt="" />\
-              <figure>' + o.msg + '</figure>\
-            </a>'
+              <figure>' + (o.msg || '') + '</figure>\
+            </a>';
+            return html;
         }
         if (Array.isArray(obj)) {
             for (var i = 0; i < obj.length; i++) {
@@ -43,7 +46,6 @@ var photoswipeObj = {
             <div class="pswp__top-bar">\
                 <div class="pswp__counter"></div>\
                 <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>\
-                <button class="pswp__button pswp__button--share" title="Share"></button>\
                 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>\
                 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>\
                 <div class="pswp__preloader">\
@@ -64,6 +66,7 @@ var photoswipeObj = {
             </div>\
           </div>\
         </div>';
+        // <button class="pswp__button pswp__button--share" title="Share"></button>\
         galleryDom.innerHTML = galleryHtml;
     },
     initPhotoSwipeFromDOM: function(gallerySelector) {
