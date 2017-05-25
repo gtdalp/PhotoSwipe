@@ -241,7 +241,8 @@ var photoswipeObj = {
                         captionEl.children[0].innerText = '';
                         return false;
                     }
-                    captionEl.children[0].innerHTML = item.title +  '<br/><small>Photo: ' + item.author + '</small>';
+                    var author = item.author ? '<br/><small>Photo:' + item.author + '</small>' : '';
+                    captionEl.children[0].innerHTML = item.title + author;
                     return true;
                 },
                 
